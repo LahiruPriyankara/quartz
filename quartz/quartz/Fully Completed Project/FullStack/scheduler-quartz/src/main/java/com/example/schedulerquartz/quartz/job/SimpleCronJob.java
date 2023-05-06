@@ -16,7 +16,15 @@ public class SimpleCronJob extends QuartzJobBean {
 	@Override
 	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
 		log.info(context.toString());
-		log.info(MessageFormat.format("(QUARTZ) SimpleCronJob fired successfully.Date:{0}; Thread: {1}",
-				new Date().toString(), Thread.currentThread().getName()));
+
+		log.info(
+				MessageFormat.format("(QUARTZ) SimpleCronJob fired successfully.Date:{0}; " +
+								"Thread: {1}; " +
+								"Job Group: {2}; " +
+								"Job Name: {3}",
+						new Date().toString(),
+						Thread.currentThread().getName(),
+						context.getJobDetail().getKey().getGroup(),
+						context.getJobDetail().getKey().getName()));
 	}
 }

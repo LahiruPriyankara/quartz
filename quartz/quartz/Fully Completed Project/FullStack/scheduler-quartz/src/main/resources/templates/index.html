@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	
+<!-- 
+	<script src="js/app.js"></script>
+	<link href="css/styles.css" rel="stylesheet" />
+ -->
+ 
+	 <style>
+		#footer {
+		   position: fixed;
+		   left: 0;
+		   bottom: 0;
+		   width: 100%;
+		   background-color: #330080;
+		   color: #ffffff;
+		   text-align: center;
+		}
+	</style>
+
+<title>Spring Boot Application</title>
+
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="row" style="margin-bottom:5px;background-color: #330080;height: 20px">
+
+	</div>
+		<div class="row">
+
+			<div class="col-md-9">	
+				<div class="row" style="margin: 5px;">	
+					<div id="jobTableDivId">
+						<div th:replace="include/jobs-table :: jobTableDiv"> </div>
+					</div>
+				</div>
+				
+				<hr>
+				
+				<h3 style="text-align: center;">Job Summary Details Report | Server Memory Health Information</h3>
+				<div class="row" style="border:1px solid #b3b3b3;margin: 5px">
+					<div class="col-md-7" style="background-color: #e6ffff">
+						<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+					</div>	
+					<div class="col-md-3">
+						<canvas id="myChartProccessorHealth" style="width:100%;max-width:600px"></canvas>
+					</div>
+				</div>					
+			</div>
+
+			<div class="col-md-3" style="border:1px solid #b3b3b3;background-color:#f2f2f2;">			
+				
+				<div id="formDivId">
+					<div th:replace="include/form :: formDiv"> </div>
+				</div>			
+
+				<br/><br/>
+			</div>
+		</div>
+		
+		<div class="row" id="footer" style="margin-top: 10px">
+			<div th:replace="include/footer :: footerDiv"> </div>
+		</div>	
+	</div>
+
+</body>
+
+
+<script>
+
+	var xValues = ["Scheduled", "Running", "Paused", "Resume","Unknown"];
+	var yValues = [10, 4, 5, 7, 0];
+	var barColors = ["green", "lightblue","orange","blue","yellow"];
+	
+	new Chart("myChart", {
+	  type: "bar",
+	  data: {
+	    labels: xValues,
+	    datasets: [{
+	      backgroundColor: barColors,
+	      data: yValues
+	    }]
+	  },
+	  options: {
+	    legend: {display: false},
+	    title: {
+	      display: true,
+	      text: "Job Summary"
+	    }
+	  }
+	});
+	
+	var xValues = ["Used", "Fee"];
+	var yValues = [60,40];
+	var barColors = [
+	  "#b91d47",
+	  "#00aba9"
+	];
+
+	new Chart("myChartProccessorHealth", {
+	  type: "doughnut",
+	  data: {
+	    labels: xValues,
+	    datasets: [{
+	      backgroundColor: barColors,
+	      data: yValues
+	    }]
+	  },
+	  options: {
+	    title: {
+	      display: true,
+	      text: "Proccessor Health"
+	    }
+	  }
+	});
+
+    function getJobDetails(jobName) {
+    	
+        var uri = "http://localhost:1920/ui/job/details/byname/"+jobName;
+        console.log(uri);
+        
+        $.post(uri, function (data) {
+            $('#formDivId').empty();
+            $('#formDivId').append(data);
+        });
+        
+/*       $.post(uri, {ids: verifyIds, rejectReason: rejectReason}, function (data) {
+            $('#pageBody').empty();
+            $('#pageBody').append(data);
+            showPage();
+        });
+*/
+    }
+    
+	function startJob(jobName) {
+    	
+        var uri = "http://localhost:1920/ui/job/start/byname/"+jobName;
+        console.log(uri);
+        
+        $.post(uri, function (data) {
+            $('#jobTableDivId').empty();
+            $('#jobTableDivId').append(data);
+        });
+
+    }
+
+	function pauseJob(jobName) {
+    	
+        var uri = "http://localhost:1920/ui/job/pause/byname/"+jobName;
+        console.log(uri);
+        
+        $.post(uri, function (data) {
+            $('#jobTableDivId').empty();
+            $('#jobTableDivId').append(data);
+        });
+
+    }
+    
+	function resumeJob(jobName) {
+	
+	    var uri = "http://localhost:1920/ui/job/resume/byname/"+jobName;
+	    console.log(uri);
+	    
+	    $.post(uri, function (data) {
+	        $('#jobTableDivId').empty();
+	        $('#jobTableDivId').append(data);
+    	});
+	}
+	
+	function deleteJob(jobName) {
+		
+	    var uri = "http://localhost:1920/ui/job/delete/byname/"+jobName;
+	    console.log(uri);
+	    
+	    $.post(uri, function (data) {
+	        $('#jobTableDivId').empty();
+	        $('#jobTableDivId').append(data);
+		});
+	}
+
+</script>
+
+</html>

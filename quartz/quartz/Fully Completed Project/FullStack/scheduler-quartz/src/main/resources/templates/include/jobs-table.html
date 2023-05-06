@@ -1,0 +1,46 @@
+<div th:fragment="jobTableDiv">
+	<table class="table table-striped" id="bookTbl">
+		<thead>
+			<tr style="background-color: #404040; color: #ffffff">
+				<th>JOB NAME</th>
+				<th>JOB GROUP</th>
+				<th>DESCRIPTION</th>
+				<th>CRON EXPRESSION</th>
+				<th>JOB STATUS</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+	
+			<tr th:each="job : ${jobs}">
+				<td th:text="${job.jobName}">1</td>
+				<td><a href="#" th:text="${job.jobGroup}">Title ...</a></td>				
+				<td th:text="${job.description}">1</td>
+				<td th:text="${job.cronExpression}">1</td>
+				<td th:text="${job.jobStatus}">1</td>
+				<td>
+					<span class="glyphicon glyphicon-pencil btn btn-success btn-sm" th:data-name="${job.jobName}" th:onclick="getJobDetails(this.getAttribute('data-name'))"></span>
+					<span class="glyphicon glyphicon-play-circle btn btn-info btn-sm" th:data-name="${job.jobName}" th:onclick="startJob(this.getAttribute('data-name'))"></span>
+					<span class="glyphicon glyphicon glyphicon-pause btn btn-warning btn-sm" th:data-name="${job.jobName}" th:onclick="pauseJob(this.getAttribute('data-name'))"></span>
+					<span class="glyphicon glyphicon glyphicon-play btn btn-primary btn-sm" th:data-name="${job.jobName}" th:onclick="resumeJob(this.getAttribute('data-name'))"></span>					
+					<span class="glyphicon glyphicon-trash btn btn-danger btn-sm" th:data-name="${job.jobName}" th:onclick="deleteJob(this.getAttribute('data-name'))"></span>
+					<!-- 
+					<span class="glyphicon glyphicon-play-circle btn btn-info btn-sm" onclick="startJob()" th:onclick="'startJobb(\''  + ${totalStudents} +  '');'"></span>
+					 -->				
+				</td>
+			</tr>
+	
+		</tbody>
+	</table>
+	<br>
+	<div>
+	
+	</div>
+	<span class="glyphicon glyphicon-pencil btn btn-success btn-sm"></span>&nbsp;Edit&nbsp;&nbsp;
+	<span class="glyphicon glyphicon-play-circle btn btn-info btn-sm"></span>&nbsp;Start&nbsp;&nbsp;
+	<span class="glyphicon glyphicon glyphicon-pause btn btn-warning btn-sm"></span>&nbsp;Pause&nbsp;&nbsp;
+	<span class="glyphicon glyphicon glyphicon-play btn btn-primary btn-sm"></span>&nbsp;Resume&nbsp;&nbsp;				
+	<span class="glyphicon glyphicon-trash btn btn-danger btn-sm"></span>&nbsp;Delete&nbsp;&nbsp;
+	
+	
+</div>

@@ -1,0 +1,49 @@
+<div th:fragment="formDiv">
+
+	<div class="row" style="text-align:center;background-color: #404040; color: #ffffff">
+		<h3>Create | Update Job</h3>
+	</div>
+	
+	<form action="#" th:action="@{/ui/job/create_update}" method="post"
+						th:object="${schedulerJobInfo}">
+						
+		<div class="form-group">
+			<label>Job Name:</label> <input type="text" th:field="*{jobName}"
+				class="form-control" placeholder="Job Name" />
+		</div>
+	
+		<div class="form-group">
+			<label>Job Group:</label> <select th:field="*{jobGroup}"
+				class="form-control">
+				<option th:each="p : ${jobGroups}" th:value="${p}" th:text="${p}" />
+			</select>
+		</div>
+	
+		<div class="form-group">
+			<label>Job Type:</label><br/>
+	    				<input type="radio" th:field="*{cronJobStr}" value="1" class="form-check-input"/>&nbsp;Cron Job 
+	    				&nbsp;&nbsp;|&nbsp;&nbsp;
+	    				<input type="radio" th:field="*{cronJobStr}" value="0" class="form-check-input"/>&nbsp;Simple Job
+		</div>
+			
+		<div class="form-group">
+			<label>Job Description:</label> 
+			<input type="text"	th:field="*{description}" class="form-control" placeholder="Job Description" />
+		</div>
+	
+	
+		<div class="form-group">
+			<label>Job Repeat Time:</label> 
+			<input type="number" th:field="*{repeatTime}" class="form-control"/>
+		</div>
+	
+		<div class="form-group">
+			<label>Cron Expression:</label> 
+			<input type="text" th:field="*{cronExpression}" class="form-control" placeholder="Cron Expression" />
+		</div>
+	
+	
+		<button type="submit" class="btn btn-primary">Create | Update</button>
+	</form>
+	
+</div>

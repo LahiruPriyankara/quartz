@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "b4273d39-a1b2-4432-8fed-e8b20a1d44a9",
+		"name": "Quartz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18326681"
+	},
+	"item": [
+		{
+			"name": "create-SimpleJob",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"isCronJob\":false,\r\n    \"jobName\":\"simapleJobName1\",\r\n    \"description\":\"description1\",\r\n    \"cronExpression\":null,\r\n    \"repeatTime\":5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1920/job/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1920",
+					"path": [
+						"job",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-SimpleCronJob",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"isCronJob\":true,\r\n    \"jobName\":\"cronJobName1\",\r\n    \"description\":\"simapleJobName1 description1\",\r\n    \"cronExpression\":\"10 * * * * ?\",\r\n    \"repeatTime\":null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1920/job/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1920",
+					"path": [
+						"job",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-SimpleCronJob",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"isCronJob\":true,\r\n    \"jobName\":\"cronJobName1\",\r\n    \"description\":\"description1\",\r\n    \"cronExpression\":\"0/5 * * * * ?\",\r\n    \"repeatTime\":null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1920/job/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1920",
+					"path": [
+						"job",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-SimpleJob",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"isCronJob\":false,\r\n    \"jobName\":\"simapleJobName1\",\r\n    \"description\":\"simapleJobName1 description1\",\r\n    \"cronExpression\":null,\r\n    \"repeatTime\":5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1920/job/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1920",
+					"path": [
+						"job",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "start-job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1920/job/start?jobName=cronJobName1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1920",
+					"path": [
+						"job",
+						"start"
+					],
+					"query": [
+						{
+							"key": "jobName",
+							"value": "cronJobName1"
+						},
+						{
+							"key": "jobName",
+							"value": "simapleJobName1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pause-job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1920/job/pause?jobName=cronJobName1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1920",
+					"path": [
+						"job",
+						"pause"
+					],
+					"query": [
+						{
+							"key": "jobName",
+							"value": "cronJobName1"
+						},
+						{
+							"key": "jobName",
+							"value": "simapleJobName1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resume-job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1920/job/resume?jobName=simapleJobName1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1920",
+					"path": [
+						"job",
+						"resume"
+					],
+					"query": [
+						{
+							"key": "jobName",
+							"value": "cronJobName1",
+							"disabled": true
+						},
+						{
+							"key": "jobName",
+							"value": "simapleJobName1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-job",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1920/job/delete?jobName=cronJobName1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1920",
+					"path": [
+						"job",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "jobName",
+							"value": "cronJobName1"
+						},
+						{
+							"key": "jobName",
+							"value": "simapleJobName1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllJobs-job",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1920/job/getAllJobs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1920",
+					"path": [
+						"job",
+						"getAllJobs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

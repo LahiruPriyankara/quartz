@@ -1,4 +1,4 @@
-package com.example.schedulerquartz.quartz.controller;
+package com.example.schedulerquartz.quartz.appScheduleExtraExample;
 
 import java.io.IOException;
 import java.util.Date;
@@ -23,9 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.schedulerquartz.quartz.config.QuartzConfig;
-import com.example.schedulerquartz.quartz.dto.MessageDto;
 import com.example.schedulerquartz.quartz.entity.SchedulerJobInfoEntity;
-import com.example.schedulerquartz.quartz.job.MessageJob;
 import com.example.schedulerquartz.quartz.repository.SchedulerRepository;
 
 @RestController

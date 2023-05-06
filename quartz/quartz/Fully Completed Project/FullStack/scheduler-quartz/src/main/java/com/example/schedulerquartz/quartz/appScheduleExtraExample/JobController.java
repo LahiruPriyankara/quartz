@@ -1,4 +1,4 @@
-package com.example.schedulerquartz.quartz.controller;
+package com.example.schedulerquartz.quartz.appScheduleExtraExample;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.schedulerquartz.quartz.businesslogic.service.SchedulerJobService;
+import com.example.schedulerquartz.quartz.businesslogic.service.JobSchedulerService;
 import com.example.schedulerquartz.quartz.dto.request.SchedulerJobInfoRequestDto;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 public class JobController {
 
-	private final SchedulerJobService scheduleJobService;
+	private final JobSchedulerService scheduleJobService;
 
 	/*
 	 * @RequestMapping(value = "/index/string", method = RequestMethod.GET) public

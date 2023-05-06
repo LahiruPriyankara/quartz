@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class SchedulerJobService {
+public class JobSchedulerService {
 
 	private ApplicationContext appContext;// From spring container.
 	private SchedulerFactoryBean schedulerFactoryBean;// Bean has been created in configuration class.
@@ -113,7 +113,7 @@ public class SchedulerJobService {
 				jobInfoEntity.setJobStatus(JobStatusEnum.CREATED_SCHEDULED);
 				schedulerRepository.save(jobInfoEntity);
 
-				response = "Successfully Created Sheduled the JOB.JobName = [" + jobInfoEntity.getJobName() + "]";
+				response = "Successfully Created Scheduled the JOB.JobName = [" + jobInfoEntity.getJobName() + "]";
 				code = "OK";
 			} else {
 				response = "scheduleNewJobRequest.jobAlreadyExist";
@@ -121,7 +121,7 @@ public class SchedulerJobService {
 		} catch (ClassNotFoundException e) {
 			response = "Class Not Found - " + jobInfoEntity.getJobClass() + ".Exception:" + e;
 		} catch (SchedulerException e) {
-			response = "Failed to Created Sheduled the job - " + jobInfoEntity.getJobName() + ".Exception:" + e;
+			response = "Failed to Created Scheduled the job - " + jobInfoEntity.getJobName() + ".Exception:" + e;
 		}
 		return new SchedulerJobInfoResponseDto(code, response);
 	}
@@ -147,10 +147,10 @@ public class SchedulerJobService {
 			jobInfoEntity.setJobStatus(JobStatusEnum.EDITED_SCHEDULED);
 			schedulerRepository.save(jobInfoEntity);
 
-			response = "Successfully Updated and Sheduled the JOB.JobName = [" + jobInfoEntity.getJobName() + "]";
+			response = "Successfully Updated and Scheduled the JOB.JobName = [" + jobInfoEntity.getJobName() + "]";
 			code = "OK";
 		} catch (SchedulerException e) {
-			response = "Failed to Updated and Sheduled the job - " + jobInfoEntity.getJobName() + ".Exception:" + e;
+			response = "Failed to Updated and Scheduled the job - " + jobInfoEntity.getJobName() + ".Exception:" + e;
 		}
 		return new SchedulerJobInfoResponseDto(code, response);
 	}
@@ -167,7 +167,7 @@ public class SchedulerJobService {
 			schedulerFactoryBean.getScheduler()
 					.triggerJob(new JobKey(jobInfoEntity.getJobName(), jobInfoEntity.getJobGroup()));
 
-			response = "Successfully Sheduled  and Started the JOB.JobName = [" + jobInfoEntity.getJobName() + "]";
+			response = "Successfully Scheduled  and Started the JOB.JobName = [" + jobInfoEntity.getJobName() + "]";
 			code = "OK";
 		} catch (Exception e) {
 			response = "Failed to start new job - " + jobName + ".Exception:" + e;

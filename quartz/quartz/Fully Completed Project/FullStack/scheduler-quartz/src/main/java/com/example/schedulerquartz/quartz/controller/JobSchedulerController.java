@@ -1,6 +1,6 @@
 package com.example.schedulerquartz.quartz.controller;
 
-import com.example.schedulerquartz.quartz.businesslogic.service.SchedulerJobService;
+import com.example.schedulerquartz.quartz.businesslogic.service.JobSchedulerService;
 import com.example.schedulerquartz.quartz.dto.request.SchedulerJobInfoRequestDto;
 import com.example.schedulerquartz.quartz.dto.response.SchedulerJobInfoResponseDto;
 import lombok.AllArgsConstructor;
@@ -14,9 +14,9 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("job")
 @AllArgsConstructor
-public class RestJobController {
+public class JobSchedulerController {
 
-    private final SchedulerJobService scheduleJobService;
+    private final JobSchedulerService scheduleJobService;
 
     @PostMapping("create")
     public ResponseEntity<SchedulerJobInfoResponseDto> create(@RequestBody @Valid SchedulerJobInfoRequestDto request) {

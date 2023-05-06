@@ -1,4 +1,4 @@
-package com.example.schedulerquartz.quartz.dto;
+package com.example.schedulerquartz.quartz.appScheduleExtraExample;
 
 import java.time.LocalDateTime;
 

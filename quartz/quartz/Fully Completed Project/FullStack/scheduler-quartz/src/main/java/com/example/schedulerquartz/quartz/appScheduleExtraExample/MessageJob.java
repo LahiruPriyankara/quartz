@@ -1,4 +1,4 @@
-package com.example.schedulerquartz.quartz.job;
+package com.example.schedulerquartz.quartz.appScheduleExtraExample;
 
 import java.text.MessageFormat;
 import java.util.Optional;
